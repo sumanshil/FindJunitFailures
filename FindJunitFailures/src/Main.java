@@ -72,7 +72,7 @@ public class Main
 		catch(Exception e)
 		{
 			logger.error("Error", e);
-			System.out.println("Not able to process LRG result diff. Please see log for error");
+			System.out.println("Unable to process LRG result diff. Please see log for error");
 		}
 	}
 
