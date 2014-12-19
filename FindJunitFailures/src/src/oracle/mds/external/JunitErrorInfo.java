@@ -63,8 +63,8 @@ public class JunitErrorInfo implements JunitError
     	String msgObj  = modifier.process(error.getMessage());
     	String msgThis = modifier.process(this.getMessage());
     	return error.getClassName().intern().equals(this.className.intern())
-    			&& error.getMethodName().intern().equals(this.methodName.intern())
-    			&& msgObj.intern().equals(msgThis.intern());
+    		  && error.getMethodName().intern().equals(this.methodName.intern())
+    		  && msgObj.intern().equals(msgThis.intern());
     	        //&& error.getTestCategory().intern().equals(this.testCategory.intern());
     }
     
