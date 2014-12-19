@@ -49,7 +49,7 @@ public class HtmlOutputGenerator implements OutputGeneratorCallback
 		addToBufferWithNewLine(content, junitError.getMessage());
 		addToBufferWithNewLine(content, "</td>");
 		addToBufferWithNewLine(content, "<td>");
-		addToBufferWithNewLine(content, "<a href=\""+junitError.getHtmlLink()+"\">"+junitError.getMethodName()+"</a>");
+		addToBufferWithNewLine(content, buildHrefLink(junitError));
 		addToBufferWithNewLine(content, "</td>");				
 		addToBufferWithNewLine(content, "</tr>");
 	}
@@ -71,7 +71,7 @@ public class HtmlOutputGenerator implements OutputGeneratorCallback
 		addToBufferWithNewLine(content, junitError.getMessage());
 		addToBufferWithNewLine(content, "</td>");	
 		addToBufferWithNewLine(content, "<td>");
-		addToBufferWithNewLine(content, "<a href=\""+junitError.getHtmlLink()+"\">"+junitError.getMethodName()+"</a>");
+		addToBufferWithNewLine(content, buildHrefLink(junitError));
 		addToBufferWithNewLine(content, "</td>");						
 		addToBufferWithNewLine(content, "</tr>");
 	}
@@ -93,5 +93,10 @@ public class HtmlOutputGenerator implements OutputGeneratorCallback
 	private void addToBufferWithNewLine(StringBuffer sb, String content)
 	{
 		sb.append(content+NEW_LINE);
+	}
+	
+	private String buildHrefLink(JunitError junitError)
+	{
+		return "<a href=\""+junitError.getHtmlLink()+"\">"+junitError.getMethodName()+"</a>";
 	}
 }
