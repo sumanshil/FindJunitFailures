@@ -105,7 +105,6 @@ public abstract class UserInputProcessor
      
         try
         {
-     
             input = new FileInputStream(path);     
             // load a properties file
             prop.load(input);
