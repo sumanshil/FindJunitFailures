@@ -10,6 +10,7 @@ import src.oracle.mds.external.requestprocessor.RequestHandler;
 import src.oracle.mds.external.requestprocessor.RequestHandler.Type;
 import src.oracle.mds.external.resultpersister.PersistErrorAndFailureResult;
 import src.oracle.mds.external.userinput.UserInputHandler;
+import src.oracle.mds.external.userinput.UserInputProcessor;
 
 public class Main
 {
@@ -20,6 +21,15 @@ public class Main
 		logger.info("Hello World");
 		try
 		{
+		    String propertiesFileParam 
+		        = UserInputProcessor.checkIfPropertyFileArgumentPresent(args);
+		    if( propertiesFileParam != null)
+		    {
+		        String[] newArgs = 
+		                UserInputProcessor.getPropertiesAsArray(propertiesFileParam);
+		        String[] mergedArgs = mergeStrings(newArgs, args);
+		        args = mergedArgs;
+		    }
 	        UserInputHandler.MODE_IMPLICIT.processUserInput(args);        
 	        if (UserInputHandler.MODE_IMPLICIT.validateUserInput().size() == 0)
 			{
@@ -75,5 +85,24 @@ public class Main
 			System.out.println("Unable to process LRG result diff. Please see log for error");
 		}
 	}
+
+	
+    private static String[] mergeStrings(String[] newArgs,
+                                         String[] args)
+    {
+        String[] mergedArgs = new String[newArgs.length + args.length];
+        int index = 0;
+        for(int i = 0 ; i < newArgs.length ; i = i+2)
+        {
+            mergedArgs[index++] = newArgs[i];
+            mergedArgs[index++] = newArgs[i+1];
+        }
+        for(int i = 0 ; i < args.length ; i = i+2)
+        {
+            mergedArgs[index++] = args[i];
+            mergedArgs[index++] = args[i+1];
+        }
+        return mergedArgs;
+    }
 
 }

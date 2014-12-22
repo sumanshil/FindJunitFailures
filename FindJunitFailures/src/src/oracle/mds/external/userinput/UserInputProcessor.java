@@ -1,7 +1,10 @@
 package src.oracle.mds.external.userinput;
 
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 
 
 public abstract class UserInputProcessor
@@ -80,6 +83,50 @@ public abstract class UserInputProcessor
             sb.append(getFinalDescription(thisInput)+"\n");
         }
         return sb.toString();
+    }
+    
+    public static String checkIfPropertyFileArgumentPresent(String[] userInput)
+    {
+        for(int i = 0 ; i < userInput.length ; i++)
+        {
+            if (new PropertyFile().getUserTag().equals(userInput[i]))
+            {
+                return userInput[i+1];
+            }
+        }
+        return null;
+    }
+    
+    public static String[] getPropertiesAsArray(String path)
+                           throws Exception
+    {
+        Properties prop = new Properties();
+        InputStream input = null;
+     
+        try
+        {
+     
+            input = new FileInputStream(path);     
+            // load a properties file
+            prop.load(input);
+            int size = prop.size();
+            String[] retVal = new String[size*2];
+            int index = 0;
+            for(Object key : prop.keySet())
+            {
+                String value = prop.getProperty((String)key);
+                retVal[index++] = (String)key;
+                retVal[index++] = value;
+            }
+            return retVal;
+        }
+        finally
+        {
+            if (input != null) 
+            {
+                input.close();
+            } 
+        }
     }
     
 }

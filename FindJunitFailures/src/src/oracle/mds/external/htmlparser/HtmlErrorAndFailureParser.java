@@ -96,7 +96,7 @@ public abstract class HtmlErrorAndFailureParser extends HtmlParser
 	    					                                 methodName,
 	    					                                 message,
 	    					                                 testType,
-	    					                                 root+"/"+value);
+	    					                                 "./junit-report/"+value);
 	    			logger.info("New Error found "+newError);
 	    			retVal.add(newError);
 	    		}
