@@ -331,6 +331,10 @@ public class UserInputHandler
     	
     }
     
+    public enum DEFAULT
+    {
+        
+    }
     public static void main(String[] args)
 	{
 		UserInputHandler.MODE_IMPLICIT. processUserInput(new String[]{"-label-series","BLAHBLAH"});
