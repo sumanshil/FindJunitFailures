@@ -75,9 +75,16 @@ public abstract class HtmlErrorAndFailureParser extends HtmlParser
 	    			while(iterator.hasNext())
 	    			{
 	    				Node node = iterator.next();
-	    				if (node.siblingIndex() == 0)
+	    				if (node.siblingIndex() == 5)
 	    				{
-	    					message = node.toString();	
+	    					message = node.toString();
+	    					String codeTag = "<code>";
+	    					String brTag = "<br>";
+	    					int codeTagIndex = message.indexOf(codeTag);
+	    					int brTagIndex = message.indexOf(brTag,
+	    					                                 codeTagIndex);
+	    					message = message.substring(codeTagIndex+codeTag.length(),
+	    					                            brTagIndex);
 	    					break;
 	    				}
 	    			}

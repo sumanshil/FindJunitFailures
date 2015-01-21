@@ -27,7 +27,7 @@ public class LinuxCommandUtil
     	String retVal = executeCommand("pwd");
     	logger.info("Current working dir "+ retVal);
     	return retVal;
-//    	return "D:/Test";
+    	//return "D:/Test";
     }
     
     public static String getCurrentViewRootPath()
